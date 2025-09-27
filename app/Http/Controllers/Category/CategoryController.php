@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Http\Resources\Category\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -60,9 +61,11 @@ class CategoryController extends Controller
                 "message" => "no se encontro la categoria"                
             ],404);
         }
-        return response()->json([
-            "category" => $category[0]
-        ]);
+        // return response()->json([
+        //     "category" => $category[0]
+        // ]);
+
+        return new CategoryResource($category[0]);
     }
 
     /**
